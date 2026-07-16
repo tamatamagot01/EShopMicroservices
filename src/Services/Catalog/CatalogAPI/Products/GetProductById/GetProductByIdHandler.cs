@@ -11,14 +11,12 @@
         {
             logger.LogInformation("GetProductByIdQueryHandler.Handle called with {@Query}", query);
 
-            // Business logic to get product by id
-            var productId = query.Id;
-
-            var product = await session.LoadAsync<Product>(productId, cancellationToken);
+            // Business logic to get product by id        
+            var product = await session.LoadAsync<Product>(query.Id, cancellationToken);
 
             if (product is null)
             {
-                throw new ProductNotFoundException();
+                throw new ProductNotFoundException(query.Id);
             }
 
             return new GetProductByIdResult(product);
