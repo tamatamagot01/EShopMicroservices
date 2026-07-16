@@ -14,13 +14,11 @@
     }
 
     internal class DeleteProductCommandHandler
-        (IDocumentSession session, ILogger<DeleteProductCommandHandler> logger)
+        (IDocumentSession session)
         : ICommandHandler<DeleteProductCommand, DeleteProductResult>
     {
         public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("DeleteProductHandler.Handle called with {@Command}", command);
-
             // Business logic to delete product
 
             session.Delete<Product>(command.Id);
