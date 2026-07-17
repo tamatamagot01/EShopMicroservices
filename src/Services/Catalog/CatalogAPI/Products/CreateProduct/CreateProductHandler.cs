@@ -43,9 +43,6 @@
 
             // Step 3 : return create product result
             return new CreateProductResult(product.Id);
-
-
-            throw new NotImplementedException();
         }
     }
 }
